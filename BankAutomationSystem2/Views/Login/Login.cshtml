@@ -1,0 +1,40 @@
+﻿@model BankAutomationSystem2.Models.User
+
+@{
+    ViewBag.Title = "Login";
+}
+<link href="@Url.Content("~/Content/LoginStyle.css")"rel="stylesheet"type="text/css" />
+
+<center id="Demo"><h2>Wizzie Bank</h2></center>
+
+<div class="login_page">
+    <div class="form">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="card custom-card">
+                <div class"card-header bg-primary text-white">
+                    <h3 id="Demo">User Login</h3>
+                </div>
+                <div class="card-body">
+                    <div id="Demo" class="form-group">
+                        @Html.LabelFor(m => m.Email)
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Email)
+                    </div>
+                    <div id="Demo" class="form-group">
+                        @Html.LabelFor(m => m.Password)
+                        @Html.TextBoxFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password)
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary rounded-0">Login</button>
+                        @Html.ActionLink("New User", "Register")
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
