@@ -13,6 +13,12 @@ namespace BankAutomationSystem2
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //routes.MapRoute(
+            //    name: "Users",
+            //    url: "Users/{action}/{id}",
+            //    defaults: new { controller = "Users", action = "Index", id = UrlParameter.Optional }
+            //);
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

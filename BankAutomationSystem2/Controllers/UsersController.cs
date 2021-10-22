@@ -18,7 +18,8 @@ namespace BankAutomationSystem2.Controllers
         // GET: Users
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            var userEmail = User.Identity.Name;
+            return View(db.Users.Where(x => x.Email==userEmail));
         }
 
         // GET: Users/Details/5
