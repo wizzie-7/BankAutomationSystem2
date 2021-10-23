@@ -14,7 +14,7 @@
 .form {
     position: relative;
     z-index: 1;
-    background: rgba(213 100 241 / 0.80);
+    background: rgb(239 62 114 / 0.80);
     max-width: 360px;
     margin: 0 auto 100px;
     padding: 45px;
@@ -43,16 +43,19 @@
 
 #Demo {
     font-family: "Times New Roman", Sans-serif;
+
     text-transform: uppercase;
-    color: aliceblue;
+    color: wheat;
 }
 
-#Link {
+#Media {
     font-family: "Roboto", Sans-serif;
     text-transform: uppercase;
-    color: aliceblue;
+    color: wheat;
 }
 
-    
-
-    
+#link {
+    font-family: "Roboto", Sans-serif;
+    text-transform: uppercase;
+    color: cyan;
+}

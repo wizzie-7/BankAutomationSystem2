@@ -4,41 +4,40 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>User</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.Label("Name")
-        </dt>
+<link href="@Url.Content("~/Content/DetailsStyle.css")" rel="stylesheet" type="text/css" />
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)   @Html.DisplayFor(model => model.LastName)
-        </dd>
+<center id="Demo"><h2>Wizzie Bank</h2></center>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Contact)
-        </dt>
+<div id="Media" class="login_page">
+    <div class="form">
+        <div>
+            <dt>
+                @Html.DisplayFor(model => model.FirstName)   @Html.DisplayFor(model => model.LastName)
+            </dt>
+            <hr />
+            <dl class="card-body">
+                <dt>
+                    @Html.LabelFor(model => model.Account) :  @Html.DisplayFor(model => model.Account)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Contact)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Contact) :  @Html.DisplayFor(model => model.Contact)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-
-
-    </dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email) : @Html.DisplayFor(model => model.Email)
+                </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Balance) : @Html.DisplayFor(model => model.Balance)
+                </dt>
+            </dl>
+        </div>
+        <p id="link">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) |
+            @Html.ActionLink("Withdraw", "Withdraw", new { id = Model.UserId }) |
+            @Html.ActionLink("Deposit", "Deposit", new { id = Model.UserId }) |
+            @Html.ActionLink("Logout", "Login", "Login")
+        </p>
+        </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

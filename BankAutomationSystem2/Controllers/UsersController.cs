@@ -40,6 +40,8 @@ namespace BankAutomationSystem2.Controllers
         // GET: Users/Create
         public ActionResult Create()
         {
+            User u = new User();
+            u.Account = new Random().Next(int.MaxValue);
             return View();
         }
 
@@ -48,13 +50,13 @@ namespace BankAutomationSystem2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserId,FirstName,LastName,Contact,Email,Password")] User user)
+        public ActionResult Create([Bind(Include = "UserId,Account,FirstName,LastName,Contact,Email,Password")] User user)
         {
             if (ModelState.IsValid)
             {
                 db.Users.Add(user);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Users", new { id = user.UserId });
             }
 
             return View(user);
@@ -80,14 +82,15 @@ namespace BankAutomationSystem2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserId,FirstName,LastName,Contact,Email,Password")] User user)
+        public ActionResult Edit([Bind(Include = "UserId,Account,FirstName,LastName,Contact,Email,Password")] User user)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Users", new { id = user.UserId });
             }
+            
             return View(user);
         }
 
@@ -115,6 +118,11 @@ namespace BankAutomationSystem2.Controllers
             db.Users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public ActionResult Withdraw(int? id)
+        {
+            return View();
         }
 
         protected override void Dispose(bool disposing)

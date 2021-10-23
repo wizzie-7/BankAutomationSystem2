@@ -24,13 +24,15 @@
                     </div>
                     <div id="Demo" class="form-group">
                         @Html.LabelFor(m => m.Password)
-                        @Html.TextBoxFor(m => m.Password, new { @class = "form-control" })
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Password)
                     </div>
                     <br />
-                    <div class="form-group">
+                    <div id="Link" class="form-group">
                         <button type="submit" class="btn btn-primary rounded-0">Login</button>
-                        @*@Html.ActionLink("New User", "Register")*@
+                    </div>
+                    <div id="Link" class="form-group">
+                         @Html.ActionLink("New User", "Create", "Users")
                     </div>
                 </div>
             </div>
