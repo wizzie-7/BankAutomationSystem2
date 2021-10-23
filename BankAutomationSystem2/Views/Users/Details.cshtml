@@ -18,7 +18,7 @@
             <hr />
             <dl class="card-body">
                 <dt>
-                    @Html.LabelFor(model => model.Account) :  @Html.DisplayFor(model => model.Account)
+                    @Html.LabelFor(model => model.AccountNo) :  @Html.DisplayFor(model => model.AccountNo)
                 </dt>
 
                 <dt>
@@ -36,7 +36,7 @@
         <p id="link">
             @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) |
             @Html.ActionLink("Withdraw", "Withdraw", new { id = Model.UserId }) |
-            @Html.ActionLink("Deposit", "Deposit", new { id = Model.UserId }) |
+            @Html.ActionLink("Deposite", "Deposite", new { id = Model.UserId }) |
             @Html.ActionLink("Logout", "Login", "Login")
         </p>
         </div>

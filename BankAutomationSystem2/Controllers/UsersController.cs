@@ -41,7 +41,7 @@ namespace BankAutomationSystem2.Controllers
         public ActionResult Create()
         {
             User u = new User();
-            u.Account = new Random().Next(int.MaxValue);
+            u.AccountNo = new Random().Next(int.MaxValue);
             return View();
         }
 
@@ -50,7 +50,7 @@ namespace BankAutomationSystem2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserId,Account,FirstName,LastName,Contact,Email,Password")] User user)
+        public ActionResult Create([Bind(Include = "UserId,AccountNo,FirstName,LastName,Contact,Email,Password")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace BankAutomationSystem2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserId,Account,FirstName,LastName,Contact,Email,Password")] User user)
+        public ActionResult Edit([Bind(Include = "UserId,AccountNo,FirstName,LastName,Contact,Email,Password")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -119,11 +119,62 @@ namespace BankAutomationSystem2.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        [HttpPost]
+        
         public ActionResult Withdraw(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            User user = db.Users.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Withdraw([Bind(Include = "UserId,AccountNo,FirstName,LastName,Contact,Email,Password,Balance,Ammount")] User user)
+        {
+            if (ModelState.IsValid)
+            {
+                user.Balance = user.Balance - user.Ammount;
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Details", "Users", new { id = user.UserId });
+            }
+
+            return View(user);
+        }
+        public ActionResult Deposite(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            User user = db.Users.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Deposite([Bind(Include = "UserId,AccountNo,FirstName,LastName,Contact,Email,Password,Balance,Ammount")] User user)
+        {
+            if (ModelState.IsValid)
+            {
+                user.Balance = user.Balance + user.Ammount;
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Details", "Users", new { id = user.UserId });
+            }
+
+            return View(user);
+        }
+
 
         protected override void Dispose(bool disposing)
         {

@@ -12,7 +12,7 @@ namespace BankAutomationSystem2.Models
         [Key]
         public int UserId { get; set; }
         
-        public long Account { get; set; }
+        public long AccountNo { get; set; }
         [Required]
         public string FirstName { get; set; }
         [Required]
@@ -23,7 +23,10 @@ namespace BankAutomationSystem2.Models
         public string Email { get; set; }
         [Required]
         public string Password { get; set; }
-        public string Balance { get; set; }
+        public int Balance { get; set; }
+
+        [NotMapped]
+        public int Ammount { get; set; }
         //[ForeignKey("CourseTrainer")]
         //public long AccountNo { get; set; }
         ////public virtual BankAccount AccountNo { get; set; }

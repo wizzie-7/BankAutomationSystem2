@@ -1,27 +1,26 @@
 ﻿@model BankAutomationSystem2.Models.User
-
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Deposite";
 }
 
-
-<link href="@Url.Content("~/Content/CreateStyle.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/EditStyle.css")" rel="stylesheet" type="text/css" />
 
 <center id="Demo"><h2>Wizzie Bank</h2></center>
 
-
 <div class="login_page">
     <div class="form">
+
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
 
             <div class="form-horizontal">
-                <h4 id="Media">Resister User</h4>
+                <h4 id="Media">Deposite</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.UserId)
 
-                    <div id="Media" class="form-group">
+                <div id="Media" class="form-group">
                     @Html.Label("Account", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.AccountNo, new { htmlAttributes = new { @class = "form-control" } })
@@ -29,7 +28,7 @@
                     </div>
                 </div>
 
-                <div id="Media" class="form-group">
+                <div class="form-group">
                     @Html.Label("First Name", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
@@ -37,7 +36,7 @@
                     </div>
                 </div>
 
-                <div id="Media" class="form-group">
+                <div class="form-group">
                     @Html.Label("Last Name", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
@@ -45,7 +44,7 @@
                     </div>
                 </div>
 
-                <div id="Media" class="form-group">
+                <div class="form-group">
                     @Html.LabelFor(model => model.Contact, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.Contact, new { htmlAttributes = new { @class = "form-control" } })
@@ -53,7 +52,7 @@
                     </div>
                 </div>
 
-                <div id="Media" class="form-group">
+                <div class="form-group">
                     @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
@@ -61,36 +60,34 @@
                     </div>
                 </div>
 
-                <div id="Media" class="form-group">
-                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="form-group">
+                    @Html.Label("Password", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
-
-                <div id="Center" class="form-group">
-
-                    <div class="col-md-offset-2 col-md-10">
-                        <center>
-                            <button type="submit" class="btn btn-primary rounded-0">Submit</button>
-                        </center>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Ammount, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Ammount, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Ammount, "", new { @class = "text-danger" })
                     </div>
-
                 </div>
 
-
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
                 </div>
-
-         }
-
-    <div>
-        @Html.ActionLink("Already User", "Login", "Login")
-    </div>
+            </div>
+        }
 
         @section Scripts {
             @Scripts.Render("~/bundles/jqueryval")
         }
-        </div>
+
     </div>
+</div>
+
