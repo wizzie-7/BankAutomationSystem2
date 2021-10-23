@@ -82,16 +82,16 @@ namespace BankAutomationSystem2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserId,AccountNo,FirstName,LastName,Contact,Email,Password")] User user)
+        public ActionResult Edit([Bind(Include = "UserId,AccountNo,FirstName,LastName,Contact,Email,Password")] User users)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
+                db.Entry(users).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Details", "Users", new { id = user.UserId });
+                return RedirectToAction("Details", "Users", new { id = users.UserId });
             }
             
-            return View(user);
+            return View(users);
         }
 
         // GET: Users/Delete/5
